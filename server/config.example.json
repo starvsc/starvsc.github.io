@@ -1,0 +1,21 @@
+{
+  "host": "127.0.0.1",
+  "port": 8000,
+  "web_root": "..",
+  "face_delivery": "../faceauth",
+  "cli_register": "build/faceauth_register",
+  "cli_verify": "build/faceauth_verify",
+  "onnxruntime_lib": "/opt/onnxruntime/lib",
+  "worker_bin": "worker/build/faceauth_worker",
+  "audit": "logs/audit.jsonl",
+  "db": {
+    "host": "127.0.0.1",
+    "port": 3306,
+    "user": "faceauth",
+    "password": "faceauth123",
+    "database": "face_auth",
+    "charset": "utf8mb4"
+  },
+  "pbkdf2_iterations": 120000,
+  "max_body_mb": 20
+}

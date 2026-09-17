@@ -1,0 +1,146 @@
+{"ts": "2026-09-14T07:29:32-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-14T07:29:59-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-14T07:39:15-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-14T07:39:41-0700", "event": "verify", "username": "2510341234", "liveness": {"challengeId": "lvc_6b6b34e03cd892b3", "mode": "verify", "passed": true, "actions": [{"key": "nod", "label": "请点一下头", "ok": true, "ms": 3775}, {"key": "open_mouth", "label": "请张开嘴巴", "ok": true, "ms": 243}], "failReason": null, "durationMs": 19489}, "decision": "reject", "score": 0.7452, "pad_attack": false, "temporal_verdict": "SPOOF"}
+{"ts": "2026-09-14T07:39:48-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-14T07:40:07-0700", "event": "verify", "username": "2510341234", "liveness": {"challengeId": "lvc_14ebcca688e4e567", "mode": "verify", "passed": true, "actions": [{"key": "nod", "label": "请点一下头", "ok": true, "ms": 1845}, {"key": "open_mouth", "label": "请张开嘴巴", "ok": true, "ms": 139}], "failReason": null, "durationMs": 13720}, "decision": "reject", "score": 0.7288, "pad_attack": false, "temporal_verdict": "SPOOF"}
+{"ts": "2026-09-14T07:49:13-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-14T07:49:34-0700", "event": "verify", "username": "2510341234", "liveness": {"challengeId": "lvc_eaf09e28a6813b4d", "mode": "verify", "passed": true, "actions": [{"key": "open_mouth", "label": "请张开嘴巴", "ok": true, "ms": 279}, {"key": "shake_head", "label": "请左右摇头", "ok": true, "ms": 1709}], "failReason": null, "durationMs": 15760}, "decision": "reject", "score": 0.7549, "pad_attack": false, "temporal_verdict": "SPOOF"}
+{"ts": "2026-09-14T07:57:33-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-14T07:57:53-0700", "event": "verify", "username": "2510341234", "liveness": {"challengeId": "lvc_8fe261235171e5b7", "mode": "verify", "passed": true, "actions": [{"key": "open_mouth", "label": "请张开嘴巴", "ok": true, "ms": 112}, {"key": "shake_head", "label": "请左右摇头", "ok": true, "ms": 2120}], "failReason": null, "durationMs": 15758}, "decision": "pass", "score": 0.7685, "pad_attack": false, "temporal_verdict": "INCONCLUSIVE"}
+{"ts": "2026-09-14T07:58:20-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-14T07:59:38-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-14T07:59:50-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-14T08:00:10-0700", "event": "verify", "username": "2510341234", "liveness": {"challengeId": "lvc_67ff13ab634ebb89", "mode": "verify", "passed": true, "actions": [{"key": "nod", "label": "请点一下头", "ok": true, "ms": 818}, {"key": "shake_head", "label": "请左右摇头", "ok": true, "ms": 3451}], "failReason": null, "durationMs": 16470}, "decision": "pass", "score": 0.6015, "pad_attack": false, "temporal_verdict": "INCONCLUSIVE"}
+{"ts": "2026-09-14T08:08:08-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-14T08:08:29-0700", "event": "verify", "username": "2510341234", "liveness": {"challengeId": "lvc_de1bb937bcf8ed6b", "mode": "verify", "passed": true, "actions": [{"key": "open_mouth", "label": "请张开嘴巴", "ok": true, "ms": 114}, {"key": "nod", "label": "请点一下头", "ok": true, "ms": 3917}], "failReason": null, "durationMs": 16356}, "decision": "pass", "score": 0.7181, "pad_attack": false, "temporal_verdict": "INCONCLUSIVE"}
+{"ts": "2026-09-14T08:08:33-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-14T08:08:53-0700", "event": "verify", "username": "2510341234", "liveness": {"challengeId": "lvc_918e7587b6520b2c", "mode": "verify", "passed": true, "actions": [{"key": "shake_head", "label": "请左右摇头", "ok": true, "ms": 1329}, {"key": "nod", "label": "请点一下头", "ok": true, "ms": 926}], "failReason": null, "durationMs": 15872}, "decision": "pass", "score": 0.7736, "pad_attack": false, "temporal_verdict": "INCONCLUSIVE"}
+{"ts": "2026-09-14T08:08:59-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-14T08:09:30-0700", "event": "verify", "username": "2510341234", "liveness": {"challengeId": "lvc_044f0e1adb2f0fd0", "mode": "verify", "passed": true, "actions": [{"key": "nod", "label": "请点一下头", "ok": true, "ms": 3188}, {"key": "open_mouth", "label": "请张开嘴巴", "ok": true, "ms": 478}], "failReason": null, "durationMs": 26957}, "decision": "pass", "score": 0.4222, "pad_attack": false, "temporal_verdict": "INCONCLUSIVE"}
+{"ts": "2026-09-15T06:55:48-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T06:56:21-0700", "event": "verify", "username": "2510341234", "liveness": {"challengeId": "lvc_f544c41a239b5081", "mode": "verify", "passed": true, "actions": [{"key": "shake_head", "label": "请左右摇头", "ok": true, "ms": 2733}, {"key": "nod", "label": "请点一下头", "ok": true, "ms": 3505}], "failReason": null, "durationMs": 20241}, "decision": "pass", "score": 0.7478, "pad_attack": false, "temporal_verdict": "INCONCLUSIVE"}
+{"ts": "2026-09-15T06:59:23-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T07:00:00-0700", "event": "verify", "username": "2510341234", "liveness": {"challengeId": "lvc_ae71c01ef906cf7e", "mode": "verify", "passed": true, "actions": [{"key": "open_mouth", "label": "请张开嘴巴", "ok": true, "ms": 150}, {"key": "shake_head", "label": "请左右摇头", "ok": true, "ms": 8414}], "failReason": null, "durationMs": 31170}, "decision": "pass", "score": 0.6765, "pad_attack": false, "temporal_verdict": "INCONCLUSIVE"}
+{"ts": "2026-09-15T07:05:35-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T07:06:06-0700", "event": "verify", "username": "2510341234", "liveness": {"challengeId": "lvc_4a482c100becabce", "mode": "verify", "passed": true, "actions": [{"key": "open_mouth", "label": "请张开嘴巴", "ok": true, "ms": 1373}, {"key": "nod", "label": "请点一下头", "ok": true, "ms": 5108}], "failReason": null, "durationMs": 25850}, "decision": "pass", "score": 0.5695, "pad_attack": false, "temporal_verdict": "INCONCLUSIVE"}
+{"ts": "2026-09-15T07:08:22-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T07:08:41-0700", "event": "verify", "username": "2510341234", "liveness": {"challengeId": "lvc_0ecf7d5cb96ddd20", "mode": "verify", "passed": true, "actions": [{"key": "open_mouth", "label": "请张开嘴巴", "ok": true, "ms": 264}, {"key": "nod", "label": "请点一下头", "ok": true, "ms": 1737}], "failReason": null, "durationMs": 13951}, "decision": "pass", "score": 0.681, "pad_attack": false, "temporal_verdict": "INCONCLUSIVE"}
+{"ts": "2026-09-15T07:09:00-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T07:09:24-0700", "event": "verify", "username": "2510341234", "liveness": {"challengeId": "lvc_d50c4629476c43a5", "mode": "verify", "passed": true, "actions": [{"key": "nod", "label": "请点一下头", "ok": true, "ms": 109}, {"key": "shake_head", "label": "请左右摇头", "ok": true, "ms": 3247}], "failReason": null, "durationMs": 20191}, "decision": "pass", "score": 0.7058, "pad_attack": false, "temporal_verdict": "INCONCLUSIVE"}
+{"ts": "2026-09-15T07:57:37-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T07:57:59-0700", "event": "verify", "username": "2510341234", "liveness": {"challengeId": "lvc_30fb791b29590a28", "mode": "verify", "passed": true, "actions": [{"key": "shake_head", "label": "请左右摇头", "ok": true, "ms": 1962}, {"key": "nod", "label": "请点一下头", "ok": true, "ms": 1100}], "failReason": null, "durationMs": 17024}, "decision": "pass", "score": 0.7346, "pad_attack": false, "temporal_verdict": "INCONCLUSIVE"}
+{"ts": "2026-09-15T07:58:57-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T07:59:39-0700", "event": "verify", "username": "2510341234", "liveness": {"challengeId": "lvc_9b65af0cc1c074e4", "mode": "verify", "passed": true, "actions": [{"key": "nod", "label": "请点一下头", "ok": true, "ms": 2231}, {"key": "open_mouth", "label": "请张开嘴巴", "ok": true, "ms": 139}], "failReason": null, "durationMs": 32149}, "decision": "pass", "score": 0.5437, "pad_attack": false, "temporal_verdict": "INCONCLUSIVE"}
+{"ts": "2026-09-15T07:59:44-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T08:00:05-0700", "event": "verify", "username": "2510341234", "liveness": {"challengeId": "lvc_e5c6ab27921d1923", "mode": "verify", "passed": true, "actions": [{"key": "open_mouth", "label": "请张开嘴巴", "ok": true, "ms": 1012}, {"key": "nod", "label": "请点一下头", "ok": true, "ms": 3663}], "failReason": null, "durationMs": 17215}, "decision": "pass", "score": 0.6786, "pad_attack": false, "temporal_verdict": "INCONCLUSIVE"}
+{"ts": "2026-09-15T08:00:11-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T08:00:21-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T08:07:36-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T08:07:56-0700", "event": "verify", "username": "2510341234", "liveness": {"challengeId": "lvc_b81ccede8dff0779", "mode": "verify", "passed": true, "actions": [{"key": "shake_head", "label": "请左右摇头", "ok": true, "ms": 1806}, {"key": "open_mouth", "label": "请张开嘴巴", "ok": true, "ms": 211}], "failReason": null, "durationMs": 14843}, "decision": "pass", "score": 0.6571, "pad_attack": false, "temporal_verdict": "INCONCLUSIVE"}
+{"ts": "2026-09-15T08:11:13-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T08:22:29-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T08:22:52-0700", "event": "verify", "username": "2510341234", "liveness": {"challengeId": "lvc_ee0a0d28461c8f77", "mode": "verify", "passed": true, "actions": [{"key": "shake_head", "label": "请左右摇头", "ok": true, "ms": 1455}, {"key": "nod", "label": "请点一下头", "ok": true, "ms": 2882}], "failReason": null, "durationMs": 18297}, "decision": "pass", "score": 0.6774, "pad_attack": false, "temporal_verdict": "INCONCLUSIVE"}
+{"ts": "2026-09-15T08:23:26-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T08:23:45-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T08:24:05-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T08:36:31-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T08:36:53-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T08:37:10-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T08:37:30-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T08:38:09-0700", "event": "verify", "username": "2510341234", "liveness": {"challengeId": "lvc_5e873911997d32cf", "mode": "verify", "passed": true, "actions": [{"key": "nod", "label": "请点一下头", "ok": true, "ms": 1534}, {"key": "shake_head", "label": "请左右摇头", "ok": true, "ms": 9653}], "failReason": null, "durationMs": 34886}, "decision": "pass", "score": 0.4899, "pad_attack": false, "temporal_verdict": "INCONCLUSIVE"}
+{"ts": "2026-09-15T08:38:37-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T08:38:52-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T08:45:42-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T08:46:02-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T08:46:29-0700", "event": "verify", "username": "2510341234", "liveness": {"challengeId": "lvc_97eaef997f55d728", "mode": "verify", "passed": true, "actions": [{"key": "shake_head", "label": "请左右摇头", "ok": true, "ms": 7631}, {"key": "nod", "label": "请点一下头", "ok": true, "ms": 3131}], "failReason": null, "durationMs": 22504}, "decision": "pass", "score": 0.7028, "pad_attack": false, "temporal_verdict": "INCONCLUSIVE"}
+{"ts": "2026-09-15T08:48:29-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T08:48:59-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T08:49:24-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T08:49:42-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T08:50:26-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T08:51:48-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T08:52:10-0700", "event": "verify", "username": "2510341234", "liveness": {"challengeId": "lvc_7558ea23f79cbc13", "mode": "verify", "passed": true, "actions": [{"key": "shake_head", "label": "请左右摇头", "ok": true, "ms": 4295}, {"key": "open_mouth", "label": "请张开嘴巴", "ok": true, "ms": 71}], "failReason": null, "durationMs": 17771}, "decision": "pass", "score": 0.7447, "pad_attack": false, "temporal_verdict": "INCONCLUSIVE"}
+{"ts": "2026-09-15T21:29:28-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T21:29:54-0700", "event": "verify", "username": "2510341234", "liveness": {"challengeId": "lvc_7a76781661e015dc", "mode": "verify", "passed": true, "actions": [{"key": "open_mouth", "label": "请张开嘴巴", "ok": true, "ms": 206}, {"key": "shake_head", "label": "请左右摇头", "ok": true, "ms": 2222}], "failReason": null, "durationMs": 20706}, "decision": "pass", "score": 0.7036, "pad_attack": false, "temporal_verdict": "INCONCLUSIVE"}
+{"ts": "2026-09-15T21:30:05-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T21:30:21-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T21:30:43-0700", "event": "verify", "username": "2510341234", "liveness": {"challengeId": "lvc_4616a0efb979381a", "mode": "verify", "passed": true, "actions": [{"key": "open_mouth", "label": "请张开嘴巴", "ok": true, "ms": 284}, {"key": "nod", "label": "请点一下头", "ok": true, "ms": 5209}], "failReason": null, "durationMs": 18427}, "decision": "pass", "score": 0.5413, "pad_attack": false, "temporal_verdict": "INCONCLUSIVE"}
+{"ts": "2026-09-15T21:30:47-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T21:31:43-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T21:32:07-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T21:32:27-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T21:32:50-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T21:33:10-0700", "event": "verify", "username": "2510341234", "liveness": {"challengeId": "lvc_c56802ade7a3181a", "mode": "verify", "passed": true, "actions": [{"key": "shake_head", "label": "请左右摇头", "ok": true, "ms": 2138}, {"key": "nod", "label": "请点一下头", "ok": true, "ms": 999}], "failReason": null, "durationMs": 15191}, "decision": "pass", "score": 0.6889, "pad_attack": false, "temporal_verdict": "INCONCLUSIVE"}
+{"ts": "2026-09-15T21:33:16-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T21:33:39-0700", "event": "verify", "username": "2510341234", "liveness": {"challengeId": "lvc_d87d37d2488ada4a", "mode": "verify", "passed": true, "actions": [{"key": "shake_head", "label": "请左右摇头", "ok": true, "ms": 2786}, {"key": "nod", "label": "请点一下头", "ok": true, "ms": 1816}], "failReason": null, "durationMs": 18721}, "decision": "pass", "score": 0.6194, "pad_attack": false, "temporal_verdict": "INCONCLUSIVE"}
+{"ts": "2026-09-15T21:33:47-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T21:34:14-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T21:34:30-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T21:35:07-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T21:35:56-0700", "event": "verify", "username": "2510341234", "liveness": {"challengeId": "lvc_58c4873dd1027496", "mode": "verify", "passed": true, "actions": [{"key": "shake_head", "label": "请左右摇头", "ok": true, "ms": 9835}, {"key": "nod", "label": "请点一下头", "ok": true, "ms": 5904}], "failReason": null, "durationMs": 44926}, "decision": "pass", "score": 0.7013, "pad_attack": false, "temporal_verdict": "INCONCLUSIVE"}
+{"ts": "2026-09-15T21:36:07-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T22:02:59-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T22:03:24-0700", "event": "verify", "username": "2510341234", "liveness": {"challengeId": "lvc_103c627b59d70332", "mode": "verify", "passed": true, "actions": [{"key": "shake_head", "label": "请左右摇头", "ok": true, "ms": 3063}, {"key": "nod", "label": "请点一下头", "ok": true, "ms": 1792}], "failReason": null, "durationMs": 19622}, "decision": "pass", "score": 0.6515, "pad_attack": false, "temporal_verdict": "INCONCLUSIVE"}
+{"ts": "2026-09-15T22:03:40-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T22:03:51-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T22:03:59-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T22:04:16-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T22:05:19-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T22:08:37-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T22:08:44-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T22:09:19-0700", "event": "verify", "username": "2510341234", "liveness": {"challengeId": "lvc_5304d3e02f2c53a2", "mode": "verify", "passed": true, "actions": [{"key": "open_mouth", "label": "请张开嘴巴", "ok": true, "ms": 9333}, {"key": "shake_head", "label": "请左右摇头", "ok": true, "ms": 5941}], "failReason": null, "durationMs": 29971}, "decision": "pass", "score": 0.6693, "pad_attack": false, "temporal_verdict": "INCONCLUSIVE"}
+{"ts": "2026-09-15T22:09:24-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T22:09:33-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T22:09:41-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T22:10:00-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T22:10:19-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T22:10:35-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T22:10:52-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T22:11:07-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T22:11:24-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T22:11:51-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T22:12:11-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T22:12:16-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T22:12:28-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T22:12:48-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T22:13:23-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T22:13:39-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T22:13:50-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T22:14:08-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T22:14:16-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T22:14:22-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T22:14:36-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T22:14:49-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T22:15:08-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T22:15:34-0700", "event": "verify", "username": "2510341234", "liveness": {"challengeId": "lvc_5a9cc0215daf4b67", "mode": "verify", "passed": true, "actions": [{"key": "shake_head", "label": "请左右摇头", "ok": true, "ms": 415}, {"key": "nod", "label": "请点一下头", "ok": true, "ms": 3688}], "failReason": null, "durationMs": 21073}, "decision": "pass", "score": 0.725, "pad_attack": false, "temporal_verdict": "INCONCLUSIVE"}
+{"ts": "2026-09-15T22:15:44-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T22:16:01-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T22:16:07-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T22:16:21-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T22:16:41-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T22:17:10-0700", "event": "verify", "username": "2510341234", "liveness": {"challengeId": "lvc_5eae31cdb8905ce2", "mode": "verify", "passed": true, "actions": [{"key": "nod", "label": "请点一下头", "ok": true, "ms": 577}, {"key": "open_mouth", "label": "请张开嘴巴", "ok": true, "ms": 139}], "failReason": null, "durationMs": 23778}, "decision": "pass", "score": 0.5814, "pad_attack": false, "temporal_verdict": "INCONCLUSIVE"}
+{"ts": "2026-09-15T22:17:21-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T22:17:40-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T22:17:56-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T22:18:23-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-15T22:18:41-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-16T03:12:05-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-16T03:12:15-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-16T03:12:21-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-16T03:12:43-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-16T03:13:00-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-16T03:13:07-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-16T03:13:26-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-16T03:13:50-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-16T03:14:13-0700", "event": "verify", "username": "2510341234", "liveness": {"challengeId": "lvc_f267732dd7f3d9a0", "mode": "verify", "passed": true, "actions": [{"key": "open_mouth", "label": "请张开嘴巴", "ok": true, "ms": 139}, {"key": "shake_head", "label": "请左右摇头", "ok": true, "ms": 1660}], "failReason": null, "durationMs": 16116}, "decision": "pass", "score": 0.7525, "pad_attack": false, "temporal_verdict": "INCONCLUSIVE"}
+{"ts": "2026-09-16T04:12:01-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-16T04:12:34-0700", "event": "verify", "username": "2510341234", "liveness": {"challengeId": "lvc_88f647b7abfa7525", "mode": "verify", "passed": true, "actions": [{"key": "shake_head", "label": "请左右摇头", "ok": true, "ms": 6880}, {"key": "nod", "label": "请点一下头", "ok": true, "ms": 875}], "failReason": null, "durationMs": 23083}, "decision": "reject", "score": 0.1082, "pad_attack": false, "temporal_verdict": "INCONCLUSIVE"}
+{"ts": "2026-09-16T04:12:43-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-16T04:13:06-0700", "event": "verify", "username": "2510341234", "liveness": {"challengeId": "lvc_f9e099be8d47f735", "mode": "verify", "passed": true, "actions": [{"key": "open_mouth", "label": "请张开嘴巴", "ok": true, "ms": 327}, {"key": "shake_head", "label": "请左右摇头", "ok": true, "ms": 1597}], "failReason": null, "durationMs": 14370}, "decision": "pass", "score": 0.738, "pad_attack": false, "temporal_verdict": "INCONCLUSIVE"}
+{"ts": "2026-09-16T04:13:25-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-16T04:13:48-0700", "event": "verify", "username": "2510341234", "liveness": {"challengeId": "lvc_dc30185946822d73", "mode": "verify", "passed": true, "actions": [{"key": "shake_head", "label": "请左右摇头", "ok": true, "ms": 945}, {"key": "nod", "label": "请点一下头", "ok": true, "ms": 1396}], "failReason": null, "durationMs": 15835}, "decision": "pass", "score": 0.7131, "pad_attack": false, "temporal_verdict": "INCONCLUSIVE"}
+{"ts": "2026-09-16T04:16:19-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-16T04:16:39-0700", "event": "verify", "username": "2510341234", "liveness": {"challengeId": "lvc_7e9d4bce02c319a9", "mode": "verify", "passed": true, "actions": [{"key": "shake_head", "label": "请左右摇头", "ok": true, "ms": 1056}, {"key": "open_mouth", "label": "请张开嘴巴", "ok": true, "ms": 118}], "failReason": null, "durationMs": 14253}, "decision": "pass", "score": 0.7584, "pad_attack": false, "temporal_verdict": "INCONCLUSIVE"}
+{"ts": "2026-09-16T04:16:56-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}
+{"ts": "2026-09-16T04:17:19-0700", "event": "login", "username": "2510341234", "phase": "password-ok"}

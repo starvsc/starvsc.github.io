@@ -1,0 +1,37 @@
+{
+  "version": 3,
+  "cmakeMinimumRequired": { "major": 3, "minor": 16, "patch": 0 },
+  "configurePresets": [
+    {
+      "name": "windows-msvc",
+      "displayName": "Windows MSVC (official OpenCV prebuilt)",
+      "generator": "Visual Studio 17 2022",
+      "architecture": "x64",
+      "binaryDir": "${sourceDir}/build/msvc",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "OpenCV_DIR": "E:/opencv/build"
+      }
+    },
+    {
+      "name": "windows-mingw",
+      "displayName": "Windows MinGW (w64devkit, OpenCV built from source)",
+      "generator": "MinGW Makefiles",
+      "binaryDir": "${sourceDir}/build/mingw",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "msvc-release",
+      "configurePreset": "windows-msvc",
+      "configuration": "Release"
+    },
+    {
+      "name": "mingw",
+      "configurePreset": "windows-mingw"
+    }
+  ]
+}
