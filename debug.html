@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>活体自检 · 动态人脸识别认证系统</title>
+<link rel="stylesheet" href="css/style.css" />
+<style>
+  /* —— 自检页专用布局 —— */
+  .dbg-shell{width:min(1160px,100%);margin:0 auto;padding:6px 18px 44px;display:grid;
+    grid-template-columns:minmax(0,1.25fr) minmax(340px,1fr);gap:20px;align-items:start}
+  .dbg-video-card{background:#05080f;border-radius:16px;overflow:hidden;box-shadow:var(--shadow-md);position:relative}
+  .dbg-video-wrap{position:relative;aspect-ratio:4/3;background:#000}
+  .dbg-video-wrap video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scaleX(-1)}
+  .dbg-overlay{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+  #dbg-state-chip{position:absolute;left:14px;top:12px;display:flex;align-items:center;gap:8px;
+    font-size:12.5px;color:#dfe7f5;background:rgba(6,12,26,.7);border:1px solid rgba(255,255,255,.16);
+    padding:6px 13px;border-radius:999px;backdrop-filter:blur(4px)}
+  .dotc{width:9px;height:9px;border-radius:50%;background:#8b97ab}
+  .dotc.good{background:var(--ok);box-shadow:0 0 8px rgba(39,176,109,.8)}
+  .dotc.warn{background:#e0a72c;box-shadow:0 0 8px rgba(224,167,44,.7)}
+  .dbg-hint{position:absolute;left:14px;right:14px;bottom:12px;display:flex;gap:10px;flex-wrap:wrap;pointer-events:none}
+  .dbg-hint span{font-size:12px;color:#fff;background:rgba(6,12,26,.62);border:1px solid rgba(255,255,255,.16);
+    padding:5px 11px;border-radius:999px;backdrop-filter:blur(3px);font-family:ui-monospace,Consolas,monospace}
+  .dbg-side{display:flex;flex-direction:column;gap:14px}
+  .dbg-panel{background:var(--card);border-radius:14px;box-shadow:var(--shadow-md);padding:16px 18px}
+  .dbg-panel h3{font-size:14.5px;color:var(--navy-900);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .dbg-panel h3::before{content:"";width:4px;height:15px;border-radius:2px;background:var(--gold)}
+  .btn-row{display:flex;gap:10px;flex-wrap:wrap}
+  .dbg-panel .btn{height:40px;font-size:14px}
+  .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .stat{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:9px 12px}
+  .stat .k{font-size:11.5px;color:var(--muted)}
+  .stat .v{font-size:19px;font-weight:700;color:var(--navy-800);font-family:ui-monospace,Consolas,monospace;margin-top:2px}
+  .stat .v small{font-size:11px;font-weight:600;color:var(--faint)}
+  .stat .v.ok{color:var(--ok)}
+  .stat .v.warn{color:var(--danger)}
+  .num-row{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:2px}
+  .num{text-align:center;background:var(--bg-soft);border-radius:9px;padding:7px 2px}
+  .num .k{font-size:10.5px;color:var(--muted)}
+  .num .v{font-size:14.5px;font-weight:700;color:var(--navy-800);font-family:ui-monospace,Consolas,monospace}
+  .stat .v.small{font-size:14px}
+  .gate-strip{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:10px;padding:8px 12px;
+    border-radius:10px;background:#eef1f7;border:1px solid var(--line);font-size:12.5px}
+  .gate-strip b{padding:2px 11px;border-radius:999px;background:var(--ok);color:#fff;font-weight:700;font-size:12px}
+  .gate-strip b.warn{background:var(--danger)}
+  .gate-strip .gv{color:var(--muted);font-family:ui-monospace,Consolas,monospace}
+  .chart-box{position:relative}
+  .chart-box canvas{width:100%;height:86px;display:block;border:1px solid var(--line);border-radius:8px;background:#fbfcfe}
+  .chart-box .cap{font-size:11px;color:var(--muted);margin-bottom:4px}
+  .guide{font-size:12.5px;line-height:1.8;color:var(--ink)}
+  .guide b{color:var(--gold-dark)}
+  .guide .mono{font-family:ui-monospace,Consolas,monospace;color:var(--navy-700)}
+  .model-state{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.7}
+  @media (max-width:980px){.dbg-shell{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="page-bg" aria-hidden="true"><div class="bg-grid"></div></div>
+
+<header class="topbar">
+  <div class="brand-mini">
+    <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4 40 10v12c0 10-6.5 17.5-16 22C14.5 39.5 8 32 8 22V10Z" fill="none" stroke="currentColor" stroke-width="2.4"/><circle cx="24" cy="21" r="6.2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15 32c1.8-3.6 5-5.4 9-5.4s7.2 1.8 9 5.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <span class="brand-name">活体自检 <em>· 68 点关键点调试台</em></span>
+  </div>
+  <div class="topbar-right"><a class="mode-badge" href="index.html" style="text-decoration:none">← 返回登录</a></div>
+</header>
+
+<main class="shell">
+  <section class="dbg-shell">
+
+    <!-- 左:视频预览 -->
+    <div class="dbg-video-card">
+      <div class="dbg-video-wrap">
+        <video id="dbg-video" autoplay playsinline muted></video>
+        <canvas id="dbg-overlay" class="dbg-overlay"></canvas>
+        <div id="dbg-state-chip"><span class="dotc" id="dbg-dot"></span><span id="dbg-chip-text">未启动</span></div>
+        <div class="dbg-hint" id="dbg-hint"></div>
+      </div>
+      <div class="dbg-panel" style="border-radius:0">
+        <div class="btn-row">
+          <button type="button" class="btn primary" id="dbg-btn-start">
+            <svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2.4"/><path d="M10.5 9.5v6l5-3-5-3Z" fill="currentColor" stroke="none"/></svg>
+            <span id="dbg-btn-label">开启摄像头自检</span>
+          </button>
+          <button type="button" class="btn ghost" id="dbg-btn-stop" disabled>停止</button>
+        </div>
+        <p class="model-state" id="dbg-model-state">模型未加载。点击“开启摄像头自检”后加载(首次约 1~2MB,可联网或已执行 tools/fetch_assets.py 离线)。</p>
+      </div>
+    </div>
+
+    <!-- 右:数据面板 -->
+    <div class="dbg-side">
+      <div class="dbg-panel">
+        <h3>实时指标</h3>
+        <div class="stat-grid">
+          <div class="stat"><div class="k">状态 / FPS</div><div class="v" id="dbg-fps">-</div></div>
+          <div class="stat"><div class="k">检测耗时</div><div class="v" id="dbg-ms">-</div></div>
+          <div class="stat"><div class="k">人脸占比(宽)</div><div class="v" id="dbg-ratio">-</div></div>
+          <div class="stat"><div class="k">置信度</div><div class="v" id="dbg-score">-</div></div>
+        </div>
+        <div class="num-row">
+          <div class="num"><div class="k">左EAR</div><div class="v" id="dbg-earL">-</div></div>
+          <div class="num"><div class="k">右EAR</div><div class="v" id="dbg-earR">-</div></div>
+          <div class="num"><div class="k">平均EAR</div><div class="v" id="dbg-ear">-</div></div>
+          <div class="num"><div class="k">MAR</div><div class="v" id="dbg-mar">-</div></div>
+          <div class="num"><div class="k">yaw</div><div class="v" id="dbg-yaw">-</div></div>
+          <div class="num"><div class="k">pitch</div><div class="v" id="dbg-pitch">-</div></div>
+        </div>
+
+        <!-- 晃动门控(与 liveness 同步) -->
+        <div class="num-row" style="grid-template-columns:repeat(3,1fr);margin-top:10px">
+          <div class="stat"><div class="k">人脸位移 ÷ 脸宽</div><div class="v small" id="dbg-disp">-</div></div>
+          <div class="stat"><div class="k">脸宽变化率</div><div class="v small" id="dbg-scale">-</div></div>
+          <div class="stat"><div class="k">倾斜角 roll(°)</div><div class="v small" id="dbg-roll">-</div></div>
+        </div>
+        <div class="gate-strip" id="dbg-gate">
+          <span>晃动门控(眨眼/张嘴):</span>
+          <b id="dbg-gate-state">静止</b>
+          <span class="gv" id="dbg-gate-thr"></span>
+        </div>
+
+        <p class="guide" style="margin-top:12px" id="dbg-guide">测试方法:正对镜头分别试 睁眼→闭眼→睁眼、张嘴、左右摇头,观察数值与波形。</p>
+      </div>
+
+      <div class="dbg-panel">
+        <h3>眨眼判定参考(自适应)</h3>
+        <p class="guide" id="dbg-thr">
+          睁眼基线 <span class="mono" id="dbg-base">-</span> ·
+          闭眼参考线 <span class="mono" id="dbg-closedref">-</span> ·
+          睁回线 <span class="mono" id="dbg-openref">-</span>
+        </p>
+        <p class="guide">判定区间:<span class="mono" id="dbg-rule">-</span></p>
+        <div class="stat" style="display:flex;justify-content:space-between;align-items:center">
+          <span class="k">检测到眨眼次数(本段自检)</span>
+          <span class="v ok" id="dbg-blinkcount" style="font-size:22px">0</span>
+        </div>
+        <p class="model-state">若你眨了很多次但计数不动:说明 <b>EAR 下探不够深</b>(下方波形会显示下探幅度)。可调低 <span class="mono">eyeClosedFloor</span> 或调小 <span class="mono">eyeClosedFactor</span>。</p>
+      </div>
+
+      <div class="dbg-panel">
+        <h3>波形(最近约 8 秒)</h3>
+        <div class="chart-box">
+          <div class="cap">EAR — 闭眼时明显下探 ↓ (参考线为当前自适应闭眼阈值)</div>
+          <canvas id="dbg-ear-chart" width="640" height="86"></canvas>
+        </div>
+        <div class="chart-box" style="margin-top:10px">
+          <div class="cap">MAR — 张嘴时明显上升 ↑</div>
+          <canvas id="dbg-mar-chart" width="640" height="86"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script type="module" src="js/debug.js"></script>
+</body>
+</html>

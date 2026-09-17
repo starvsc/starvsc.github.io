@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>人脸图像质量检测 · 自检</title>
+<link rel="stylesheet" href="css/style.css" />
+<style>
+  .qc-shell{width:min(760px,100%);margin:0 auto;padding:6px 18px 44px}
+  .qc-card{background:var(--card);border-radius:18px;box-shadow:var(--shadow-md);padding:24px 28px 26px;margin-top:8px}
+  .qc-card h2{font-size:20px;color:var(--navy-900)}
+  .qc-sub{font-size:13px;color:var(--muted);margin:8px 0 18px;line-height:1.8}
+  .qc-tools{display:flex;justify-content:center;margin-bottom:16px}
+  .qc-stage{position:relative;max-width:480px;margin:0 auto 16px;border-radius:14px;overflow:hidden;background:#000;aspect-ratio:4/3}
+  .qc-stage img{width:100%;height:100%;object-fit:contain}
+  .qc-verdict{font-size:15px;font-weight:700;padding:10px 14px;border-radius:10px;margin-bottom:14px}
+  .qc-verdict.pass{background:var(--ok-bg);color:var(--ok)}
+  .qc-verdict.fail{background:var(--danger-bg);color:var(--danger)}
+  .qc-items{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+  .qc-msg{font-size:12.5px;color:var(--muted);min-height:18px;line-height:1.7}
+</style>
+</head>
+<body>
+<div class="page-bg" aria-hidden="true"><div class="bg-grid"></div></div>
+
+<header class="topbar">
+  <div class="brand-mini">
+    <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4 40 10v12c0 10-6.5 17.5-16 22C14.5 39.5 8 32 8 22V10Z" fill="none" stroke="currentColor" stroke-width="2.4"/><circle cx="24" cy="21" r="6.2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15 32c1.8-3.6 5-5.4 9-5.4s7.2 1.8 9 5.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <span class="brand-name">人脸图像质量检测 <em>· 自检</em></span>
+  </div>
+  <div class="topbar-right"><a class="mode-badge" href="index.html" style="text-decoration:none">← 返回登录</a></div>
+</header>
+
+<main class="shell">
+  <section class="qc-shell">
+    <div class="qc-card">
+      <h2>人脸图像质量检测（8 项）</h2>
+      <p class="qc-sub">
+        上传一张人脸图片，依次校验 检测置信度 / 人数 / 大小 / 居中 / 姿态 / 睁眼 / 清晰 / 曝光，
+        任一不达标即显示对应的要求。用于无摄像头时验证质量门槛，也可用来标定 config.js 里的阈值。
+      </p>
+
+      <div class="qc-tools">
+        <button type="button" class="btn primary" id="qc-upload">📷 选择人脸图片</button>
+        <input type="file" id="qc-file" accept="image/*" hidden />
+      </div>
+
+      <div class="qc-stage"><img id="qc-img" alt="预览" /></div>
+
+      <div class="qc-verdict" id="qc-verdict" hidden></div>
+      <div class="qc-items" id="qc-items"></div>
+      <p class="qc-msg" id="qc-msg"></p>
+    </div>
+  </section>
+</main>
+
+<script type="module" src="js/quality-check.js"></script>
+</body>
+</html>

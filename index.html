@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>动态人脸识别安全认证系统 · 入口</title>
+<link rel="stylesheet" href="css/style.css" />
+<style>
+  .portal-shell{width:min(760px,100%);margin:0 auto;padding:6px 18px 44px}
+  .portal-hero{text-align:center;margin:26px 0 28px;color:#eef3fc}
+  .portal-hero h1{font-size:30px;font-weight:700;letter-spacing:.5px;color:#fff}
+  .portal-hero p{margin-top:10px;color:#aab9d8;font-size:14px}
+  .portal-cards{display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
+  .p-card{flex:1;min-width:230px;max-width:300px;background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:36px 26px;text-align:center;
+    color:#eef3fc;text-decoration:none;transition:.18s;backdrop-filter:blur(4px);display:block}
+  .p-card:hover{transform:translateY(-3px);border-color:var(--gold);background:rgba(255,255,255,.1)}
+  .p-card .ic{width:66px;height:66px;margin:0 auto 16px;border-radius:16px;display:grid;place-items:center;
+    font-size:30px;background:rgba(201,162,39,.16);color:var(--gold-light)}
+  .p-card h2{font-size:20px;color:#fff}
+  .p-card p{margin-top:8px;font-size:12.5px;color:#9fb0cc;line-height:1.7}
+</style>
+</head>
+<body>
+<div class="page-bg" aria-hidden="true"><div class="bg-grid"></div></div>
+
+<main class="shell">
+  <section class="portal-shell">
+    <div class="portal-hero">
+      <h1>动态人脸识别安全认证系统</h1>
+      <p>请选择要进入的端</p>
+    </div>
+    <div class="portal-cards">
+      <a class="p-card" href="user.html">
+        <div class="ic">👤</div>
+        <h2>用户端</h2>
+        <p>人脸识别认证 · 登录 / 注册</p>
+      </a>
+      <a class="p-card" href="admin-login.html">
+        <div class="ic">🛡️</div>
+        <h2>管理端</h2>
+        <p>管理员登录 · 查看用户注册信息</p>
+      </a>
+    </div>
+  </section>
+</main>
+</body>
+</html>

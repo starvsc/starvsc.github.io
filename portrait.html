@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>人脸关键点 · 人像精细分割 · 动态人脸识别认证系统</title>
+<link rel="stylesheet" href="css/style.css" />
+<style>
+  .pt-shell{width:min(1120px,100%);margin:0 auto;padding:6px 18px 44px}
+  .pt-card{background:var(--card);border-radius:18px;box-shadow:var(--shadow-md);padding:24px 28px 26px;margin-top:8px}
+  .pt-card h2{font-size:21px;color:var(--navy-900)}
+  .pt-sub{font-size:13px;color:var(--muted);margin:8px 0 18px;line-height:1.8}
+  .pt-tools{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:16px}
+  .pt-tools .field-g{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--navy-800)}
+  select,input[type=color]{height:36px;border:1px solid var(--line);border-radius:9px;padding:0 8px;font-size:13px;background:#fff}
+  .pt-stage{position:relative;aspect-ratio:4/3;background:#000;border-radius:14px;overflow:hidden}
+  .pt-stage video,.pt-stage canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+  .pt-stage video,.pt-stage canvas.mirror{transform:scaleX(-1)}
+  #pt-ov{pointer-events:none}
+  .pt-chip{position:absolute;left:12px;bottom:12px;display:flex;gap:8px;align-items:center;font-size:12px;color:#dfe7f5;
+    background:rgba(6,12,26,.7);border:1px solid rgba(255,255,255,.16);padding:6px 12px;border-radius:999px;z-index:5}
+  .dotp{width:8px;height:8px;border-radius:50%;background:#8b97ab}
+  .dotp.on{background:var(--ok);box-shadow:0 0 8px rgba(39,176,109,.7)}
+  .pt-msg{font-size:12.5px;color:var(--muted);margin-top:10px;min-height:18px;line-height:1.7}
+  .btn-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  @media (max-width:820px){.pt-stage{aspect-ratio:3/4}}
+</style>
+</head>
+<body>
+<div class="page-bg" aria-hidden="true"><div class="bg-grid"></div></div>
+
+<header class="topbar">
+  <div class="brand-mini">
+    <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4 40 10v12c0 10-6.5 17.5-16 22C14.5 39.5 8 32 8 22V10Z" fill="none" stroke="currentColor" stroke-width="2.4"/><circle cx="24" cy="21" r="6.2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15 32c1.8-3.6 5-5.4 9-5.4s7.2 1.8 9 5.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <span class="brand-name">人脸关键点 · 人像精细分割 <em>· 命题(3)</em></span>
+  </div>
+  <div class="topbar-right"><a class="mode-badge" href="index.html" style="text-decoration:none">← 返回登录</a></div>
+</header>
+
+<main class="shell">
+  <section class="pt-shell">
+    <div class="pt-card">
+      <h2>人脸关键点检测 + 人像精细分割</h2>
+      <p class="pt-sub">
+        左/中:实时叠加 68 点人脸关键点(face-api,与 dlib 同点序);人像前景分割使用 MediaPipe SelfieSegmentation。
+        可选择 抠像(透明背景)、背景替换、蒙版高亮 三种分割展示;也支持上传一张图片做静态检测。
+      </p>
+
+      <div class="pt-tools">
+        <div class="btn-row">
+          <button type="button" class="btn primary" id="pt-start">开启摄像头</button>
+          <button type="button" class="btn ghost" id="pt-stop" disabled>停止</button>
+          <button type="button" class="btn outline" id="pt-upload">📷 上传图片</button>
+          <input type="file" id="pt-file" accept="image/*" hidden />
+        </div>
+        <label class="field-g">分割模式
+          <select id="pt-mode">
+            <option value="cutout">抠像(透明背景)</option>
+            <option value="bg">背景替换</option>
+            <option value="overlay">蒙版高亮</option>
+            <option value="off">关闭分割</option>
+          </select>
+        </label>
+        <label class="field-g">背景色 <input type="color" id="pt-bgcolor" value="#2f6fd6" /></label>
+        <label class="field-g"><input type="checkbox" id="pt-key" checked /> 显示68点关键点</label>
+      </div>
+
+      <div class="pt-stage">
+        <video id="pt-video" autoplay playsinline muted class="mirror"></video>
+        <canvas id="pt-seg" class="mirror"></canvas>
+        <canvas id="pt-ov"></canvas>
+        <div class="pt-chip"><span class="dotp" id="pt-dot"></span><span id="pt-state">未启动</span></div>
+      </div>
+      <p class="pt-msg" id="pt-msg">说明:首次使用需联网加载 MediaPipe 模型(约 1~2MB)。若需离线,可用 tools/fetch_assets.py 扩展下载到 assets/vendor/mediapipe。</p>
+    </div>
+  </section>
+</main>
+
+<script type="module" src="js/portrait.js"></script>
+</body>
+</html>

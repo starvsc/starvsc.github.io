@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>动态人脸识别安全认证系统 · Ruijie</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div class="page-bg" aria-hidden="true">
+  <div class="bg-grid"></div>
+  <div class="bg-glow bg-glow-a"></div>
+  <div class="bg-glow bg-glow-b"></div>
+</div>
+
+<!-- 顶部信息条 -->
+<header class="topbar">
+  <div class="brand-mini">
+    <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true">
+      <path d="M24 4 40 10v12c0 10-6.5 17.5-16 22C14.5 39.5 8 32 8 22V10Z" fill="none" stroke="currentColor" stroke-width="2.4"/>
+      <circle cx="24" cy="21" r="6.2" fill="none" stroke="currentColor" stroke-width="2"/>
+      <path d="M15 32c1.8-3.6 5-5.4 9-5.4s7.2 1.8 9 5.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    <span class="brand-name">动态人脸识别安全认证系统</span>
+  </div>
+  <div class="topbar-right">
+    <a class="mode-badge" href="debug.html" style="text-decoration:none;cursor:pointer">🔧 活体自检</a>
+    <a class="mode-badge" href="compare.html" style="text-decoration:none;cursor:pointer">⇄ 双图比对</a>
+    <a class="mode-badge" href="portrait.html" style="text-decoration:none;cursor:pointer">◍ 关键点/分割</a>
+    <a class="mode-badge" href="security.html" style="text-decoration:none;cursor:pointer">🛡 告警</a>
+    <span class="ver">v0.2.0</span>
+  </div>
+</header>
+
+<main class="shell">
+
+  <!-- ============ 认证视图:登录 / 注册 ============ -->
+  <section id="view-auth" class="auth-view">
+
+    <!-- 左:品牌区 -->
+    <aside class="brand-panel">
+      <div class="brand-hero">
+        <svg class="brand-mark lg" viewBox="0 0 48 48" aria-hidden="true">
+          <path d="M24 4 40 10v12c0 10-6.5 17.5-16 22C14.5 39.5 8 32 8 22V10Z" fill="none" stroke="currentColor" stroke-width="2"/>
+          <circle cx="24" cy="21" r="6.2" fill="none" stroke="currentColor" stroke-width="2"/>
+          <path d="M15 32c1.8-3.6 5-5.4 9-5.4s7.2 1.8 9 5.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <h1>安全·无感·可追踪</h1>
+        <p class="sub">基于动态算法的安全人脸识别认证模块</p>
+      </div>
+      <ul class="feature-list">
+        <li><span class="dot"></span>摄像头人脸采集与账号注册</li>
+        <li><span class="dot"></span>68 关键点实时检测与活体挑战</li>
+        <li><span class="dot"></span>随机动作活体 · 防照片/视频重放</li>
+        <li><span class="dot"></span>人脸比对交由后端 /api/v1/face/verify</li>
+      </ul>
+      <p class="target">核心指标:拒识率 &lt; 3% · 误识率 &lt; 3% · 识别 &lt; 2s</p>
+    </aside>
+
+    <!-- 右:表单区 -->
+    <div class="form-panel">
+      <div class="tab-bar" role="tablist">
+        <button class="tab active" data-auth-tab="login" role="tab" aria-selected="true">登录</button>
+        <button class="tab" data-auth-tab="register" role="tab" aria-selected="false">注册</button>
+      </div>
+
+      <!-- 登录表单 -->
+      <form id="form-login" class="auth-form" data-form="login" novalidate>
+        <h2 class="form-title">账号登录</h2>
+        <p class="form-sub">账号密码校验通过后,再进行人脸活体验证</p>
+
+        <div class="field">
+          <label for="login-username">账号</label>
+          <input id="login-username" name="username" type="text" autocomplete="username"
+                 placeholder="请输入账号" spellcheck="false" />
+        </div>
+
+        <div class="field">
+          <label for="login-password">密码</label>
+          <div class="input-affix">
+            <input id="login-password" name="password" type="password" autocomplete="current-password"
+                   placeholder="请输入密码" />
+            <button type="button" class="eye-btn" data-eye="login-password" aria-label="显示/隐藏密码">
+              <svg viewBox="0 0 24 24"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12Z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="form-actions row-between">
+          <button type="button" class="link-btn" id="btn-fill-demo">填入演示账号</button>
+          <p class="err" id="login-error" role="alert"></p>
+        </div>
+
+        <!-- 模块三(时序活体)判定字段:仅在活体未通过时显示 -->
+        <p class="err" id="login-verdict" role="alert" hidden></p>
+
+        <button type="submit" class="btn primary block" id="login-submit">
+          <span class="btn-label">登 录</span>
+          <span class="spinner" hidden></span>
+        </button>
+
+        <p class="switch-hint">还没有账号?<button type="button" class="link-btn accent" data-switch-to="register">立即注册</button></p>
+      </form>
+
+      <!-- 注册表单(两步) -->
+      <form id="form-register" class="auth-form" data-form="register" hidden novalidate>
+        <h2 class="form-title">账号注册</h2>
+        <p class="form-sub">创建账号并采集人脸样本,用于后续登录比对</p>
+
+        <!-- 步骤指示 -->
+        <div class="steps">
+          <div class="step-chip active" data-rstep-chip="1"><i>1</i>账号信息</div>
+          <div class="step-line"></div>
+          <div class="step-chip" data-rstep-chip="2"><i>2</i>人脸录入</div>
+        </div>
+
+        <!-- 第 1 步:账号信息 -->
+        <div class="rstep" data-rstep="1">
+          <div class="field">
+            <label for="reg-username">账号 <em>*</em></label>
+            <input id="reg-username" type="text" autocomplete="username" placeholder="4-20 位字母/数字/下划线" spellcheck="false" />
+          </div>
+          <div class="field">
+            <label for="reg-display">显示名</label>
+            <input id="reg-display" type="text" placeholder="姓名/工号(选填)" spellcheck="false" />
+          </div>
+          <div class="field">
+            <label for="reg-password">密码 <em>*</em></label>
+            <div class="input-affix">
+              <input id="reg-password" type="password" autocomplete="new-password" placeholder="至少 8 位,含字母与数字" />
+              <button type="button" class="eye-btn" data-eye="reg-password" aria-label="显示/隐藏密码">
+                <svg viewBox="0 0 24 24"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12Z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+            <div class="strength" id="pw-strength"><i></i><i></i><i></i><i></i><span>弱</span></div>
+          </div>
+          <div class="field">
+            <label for="reg-confirm">确认密码 <em>*</em></label>
+            <input id="reg-confirm" type="password" autocomplete="new-password" placeholder="再次输入密码" />
+          </div>
+          <p class="err" id="reg-error-s1" role="alert"></p>
+          <button type="button" class="btn primary block" id="reg-next">下一步 · 人脸录入</button>
+        </div>
+
+        <!-- 第 2 步:人脸录入 -->
+        <div class="rstep" data-rstep="2" hidden>
+          <div class="face-box">
+            <div class="face-thumbs" id="reg-thumbs">
+              <div class="thumb placeholder" data-pos="正面">
+                <svg viewBox="0 0 48 48"><circle cx="24" cy="21" r="7" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M14 32c2-4 5.6-6 10-6s8 2 10 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+                <span>正面</span>
+              </div>
+              <div class="thumb placeholder" data-pos="左侧">
+                <svg viewBox="0 0 48 48"><circle cx="25" cy="21" r="7" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M17 33c3-3.4 6.4-5 11-5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+                <span>向左转头</span>
+              </div>
+              <div class="thumb placeholder" data-pos="右侧">
+                <svg viewBox="0 0 48 48"><circle cx="23" cy="21" r="7" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M20 33c3-3.4 6.4-5 11-5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+                <span>向右转头</span>
+              </div>
+            </div>
+            <button type="button" class="btn outline block" id="btn-open-enroll">
+              <svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="13" rx="2.4"/><path d="m8 19 4-5 3 3 2-2.5 3 3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="9" cy="11" r="1.6"/></svg>
+              开启摄像头 · 活体挑战并采集样本
+            </button>
+            <p class="hint-msg" id="reg-face-hint">将先进行随机动作活体挑战(防照片/视频),通过后再依次采集 正面 / 左转 / 右转 三个姿态,提升后续比对鲁棒性。</p>
+          </div>
+          <p class="err" id="reg-error-s2" role="alert"></p>
+          <div class="btn-row">
+            <button type="button" class="btn ghost" id="reg-back">上一步</button>
+            <button type="submit" class="btn primary" id="reg-submit" disabled>
+              <span class="btn-label">完成注册</span>
+              <span class="spinner" hidden></span>
+            </button>
+          </div>
+        </div>
+
+        <p class="switch-hint">已有账号?<button type="button" class="link-btn accent" data-switch-to="login">返回登录</button></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ 登录成功落地页 ============ -->
+  <section id="view-landing" class="landing-view" hidden>
+    <div class="landing-card">
+      <div class="ok-ring">
+        <svg viewBox="0 0 52 52"><path d="M14 27l8 8 16-17" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <h2>认证通过</h2>
+      <p class="welcome-text">欢迎,<strong id="landing-user">-</strong></p>
+      <p class="landing-sub">账号密码 + 人脸比对均已完成。</p>
+      <div class="landing-badges">
+        <span class="badge ok">人脸比对 通过</span>
+        <span class="badge ok">活体检测 通过</span>
+        <span class="badge muted">识别耗时 0.0 s(模拟)</span>
+      </div>
+      <div class="landing-mock">
+        <p>主业务系统 / 人脸比对后端尚未接入,当前为<strong>前端独立演示</strong>。</p>
+        <p class="mono">下一步:对接 /api/v1/face/verify · /api/v1/auth/*</p>
+      </div>
+      <button type="button" class="btn ghost" id="btn-logout">退出登录</button>
+    </div>
+  </section>
+</main>
+
+<!-- ============ 摄像头弹窗 ============ -->
+<div id="cam-modal" class="modal" hidden>
+  <div class="cam-card">
+    <header class="cam-header">
+      <h3 id="cam-title">人脸录入</h3>
+      <button type="button" class="icon-btn" id="cam-close" aria-label="关闭">
+        <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </header>
+
+    <div class="cam-stage" id="cam-stage">
+      <video id="cam-video" autoplay playsinline muted></video>
+      <canvas id="cam-overlay" class="cam-overlay" aria-hidden="true"></canvas>
+      <div class="cam-command" id="cam-command"></div>
+      <div class="reticle" aria-hidden="true">
+        <svg class="reticle-svg" viewBox="0 0 200 240">
+          <ellipse cx="100" cy="112" rx="62" ry="80" fill="none" stroke="currentColor" stroke-width="1.4" stroke-dasharray="6 5"/>
+          <ellipse cx="100" cy="112" rx="74" ry="94" fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.35"/>
+        </svg>
+        <div class="scan-line"></div>
+      </div>
+      <div class="cam-state" id="cam-state">
+        <span class="lv-dot" id="lv-dot"></span>
+        <span id="cam-state-text">正在启动摄像头…</span>
+      </div>
+    </div>
+
+    <div class="pose-bar" id="pose-bar"><!-- 步骤由 JS 填充 --></div>
+
+    <div class="cam-quality" id="cam-quality" aria-live="polite"><!-- 质量读数由 JS 填充 --></div>
+
+    <footer class="cam-footer">
+      <p class="cam-tip" id="cam-tip">请将面部置于椭圆框内,保持光线充足。</p>
+      <div class="cam-btns">
+        <button type="button" class="btn ghost" id="cam-cancel">取消</button>
+        <button type="button" class="btn primary" id="cam-action" disabled>
+          <span class="btn-label" id="cam-action-label">拍摄</span>
+        </button>
+      </div>
+    </footer>
+  </div>
+</div>
+
+<div id="toast-root" class="toast-root" aria-live="polite"></div>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

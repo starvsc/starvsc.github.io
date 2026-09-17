@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>管理端 · 动态人脸识别安全认证系统</title>
+<link rel="stylesheet" href="css/style.css" />
+<style>
+  .ad-shell{width:min(880px,100%);margin:0 auto;padding:6px 18px 44px}
+  .ad-card{background:var(--card);border-radius:18px;box-shadow:var(--shadow-md);padding:28px 32px 30px;margin-top:8px}
+  .ad-card h2{font-size:20px;color:var(--navy-900)}
+  .ad-sub{font-size:13px;color:var(--muted);margin:8px 0 20px;line-height:1.8}
+  .ad-topline{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
+  .ad-topline h2{margin:0}
+  .ad-table{width:100%;border-collapse:collapse;font-size:13.5px}
+  .ad-table th,.ad-table td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line)}
+  .ad-table th{color:var(--muted);font-weight:600;font-size:12.5px;background:#f7f9fc}
+  .ad-table td{color:var(--ink)}
+  .badge-mini{font-size:11.5px;padding:3px 9px;border-radius:999px;background:#eef1f7;color:var(--muted);white-space:nowrap}
+  .badge-mini.ok{background:var(--ok-bg);color:var(--ok)}
+</style>
+</head>
+<body>
+<div class="page-bg" aria-hidden="true"><div class="bg-grid"></div></div>
+
+<header class="topbar">
+  <div class="brand-mini">
+    <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4 40 10v12c0 10-6.5 17.5-16 22C14.5 39.5 8 32 8 22V10Z" fill="none" stroke="currentColor" stroke-width="2.4"/><circle cx="24" cy="21" r="6.2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15 32c1.8-3.6 5-5.4 9-5.4s7.2 1.8 9 5.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <span class="brand-name">动态人脸识别安全认证系统 <em>· 管理端</em></span>
+  </div>
+  <div class="topbar-right">
+    <a class="mode-badge" href="index.html" style="text-decoration:none">← 返回入口</a>
+    <a class="mode-badge" href="security.html" style="text-decoration:none">🛡 告警</a>
+  </div>
+</header>
+
+<main class="shell">
+  <section class="ad-shell">
+    <div class="ad-card">
+      <div class="ad-topline">
+        <h2>用户注册信息</h2>
+        <div style="display:flex;gap:10px;align-items:center">
+          <span class="badge-mini ok" id="ad-who"></span>
+          <button type="button" class="btn ghost" id="ad-refresh">刷新</button>
+          <button type="button" class="btn outline" id="ad-logout">退出</button>
+        </div>
+      </div>
+      <table class="ad-table">
+        <thead>
+          <tr><th>账号</th><th>显示名</th><th>人脸样本数</th><th>注册时间</th></tr>
+        </thead>
+        <tbody id="ad-user-rows"></tbody>
+      </table>
+      <p class="ad-sub" id="ad-count" style="margin-bottom:0"></p>
+    </div>
+  </section>
+</main>
+
+<script type="module" src="js/admin.js"></script>
+</body>
+</html>

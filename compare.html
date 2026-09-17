@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>双图人脸比对 · 动态人脸识别认证系统</title>
+<link rel="stylesheet" href="css/style.css" />
+<style>
+  .cmp-shell{width:min(980px,100%);margin:0 auto;padding:6px 18px 44px}
+  .cmp-card{background:var(--card);border-radius:18px;box-shadow:var(--shadow-md);
+    padding:26px 30px 30px;margin-top:8px}
+  .cmp-card h2{font-size:21px;color:var(--navy-900)}
+  .cmp-sub{font-size:13px;color:var(--muted);margin:8px 0 18px;line-height:1.7}
+  .mode-strip{display:inline-flex;align-items:center;gap:8px;font-size:12px;padding:6px 14px;
+    border-radius:999px;background:var(--bg-soft);border:1px solid var(--line);color:var(--muted)}
+  .mode-strip i{width:8px;height:8px;border-radius:50%;background:#8b97ab;display:inline-block}
+  .mode-strip.on i{background:var(--ok);box-shadow:0 0 8px rgba(39,176,109,.7)}
+  .slots{display:grid;grid-template-columns:1fr auto 1fr;gap:18px;align-items:center;margin:22px 0}
+  .slot{position:relative;aspect-ratio:1/1;max-height:340px;border:1.8px dashed var(--line);
+    border-radius:14px;background:var(--bg-soft);display:flex;align-items:center;justify-content:center;
+    overflow:hidden;cursor:pointer;transition:.18s;min-height:220px}
+  .slot:hover{border-color:var(--gold)}
+  .slot.filled{border-style:solid;border-color:var(--ok)}
+  .slot .ph{text-align:center;color:#9aa7bb;font-size:13.5px;line-height:1.9;pointer-events:none}
+  .slot .ph svg{width:46px;height:46px;margin:0 auto 6px;display:block;fill:none;stroke:currentColor;stroke-width:1.6}
+  .slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#0a0f1a}
+  .slot .tag{position:absolute;left:8px;top:8px;font-size:11px;padding:3px 10px;border-radius:999px;
+    background:rgba(10,16,30,.72);color:#e6edf8;z-index:1;backdrop-filter:blur(3px)}
+  .slot .remove{position:absolute;right:8px;top:8px;z-index:2;width:26px;height:26px;border:0;border-radius:50%;
+    background:rgba(10,16,30,.75);color:#ffd9d9;font-size:15px;line-height:1;display:none}
+  .slot.filled .remove{display:block}
+  .slot .remove:hover{background:#b33636}
+  .vs{font-size:22px;font-weight:800;color:var(--gold-dark)}
+  .cmp-act{text-align:center;margin:6px 0 4px}
+  .err{min-height:18px;text-align:center}
+  .res-box{margin-top:18px;border:1px solid var(--line);border-radius:14px;padding:18px 20px;
+    display:none;background:var(--bg-soft)}
+  .res-box.show{display:block}
+  .res-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .verdict{font-size:22px;font-weight:800;letter-spacing:.5px}
+  .verdict.yes{color:var(--ok)}
+  .verdict.no{color:#c0392b}
+  .res-grid{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+  .res-item{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 16px;text-align:center}
+  .res-item .k{font-size:11.5px;color:var(--muted)}
+  .res-item .v{font-size:18px;font-weight:700;color:var(--navy-800);font-family:ui-monospace,Consolas,monospace}
+  .res-item .v small{font-size:11px;font-weight:600;color:var(--faint)}
+  @media (max-width:820px){.slots{grid-template-columns:1fr;gap:12px}.vs{text-align:center}}
+</style>
+</head>
+<body>
+<div class="page-bg" aria-hidden="true"><div class="bg-grid"></div></div>
+
+<header class="topbar">
+  <div class="brand-mini">
+    <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4 40 10v12c0 10-6.5 17.5-16 22C14.5 39.5 8 32 8 22V10Z" fill="none" stroke="currentColor" stroke-width="2.4"/><circle cx="24" cy="21" r="6.2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15 32c1.8-3.6 5-5.4 9-5.4s7.2 1.8 9 5.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <span class="brand-name">双图人脸比对 <em>· 任取两张图判断是否同一人</em></span>
+  </div>
+  <div class="topbar-right"><a class="mode-badge" href="index.html" style="text-decoration:none">← 返回登录</a></div>
+</header>
+
+<main class="shell">
+  <section class="cmp-shell">
+    <div class="cmp-card">
+      <h2>人脸相似度比对</h2>
+      <p class="cmp-sub">上传两张含人脸的图片,调用识别模块(队友 faceauth_compare2)提取 512 维特征做余弦比对,
+        判断是否同一人并给出相似度。人脸应完整、清晰、正对镜头效果最佳。</p>
+      <div class="mode-strip" id="cmp-mode"><i></i><span>正在检测后端…</span></div>
+
+      <div class="slots">
+        <label class="slot" id="slotA">
+          <span class="tag">图 A</span>
+          <span class="ph"><svg viewBox="0 0 48 48"><rect x="4" y="8" width="40" height="32" rx="4"/><circle cx="16" cy="20" r="3.4"/><path d="m10 34 9-9 6 6 5-5 8 8" fill="none"/></svg>点击上传图 A</span>
+          <button type="button" class="remove" data-clear="slotA" aria-label="移除">✕</button>
+        </label>
+        <div class="vs">VS</div>
+        <label class="slot" id="slotB">
+          <span class="tag">图 B</span>
+          <span class="ph"><svg viewBox="0 0 48 48"><rect x="4" y="8" width="40" height="32" rx="4"/><circle cx="16" cy="20" r="3.4"/><path d="m10 34 9-9 6 6 5-5 8 8" fill="none"/></svg>点击上传图 B</span>
+          <button type="button" class="remove" data-clear="slotB" aria-label="移除">✕</button>
+        </label>
+        <input type="file" id="fileA" accept="image/*" hidden />
+        <input type="file" id="fileB" accept="image/*" hidden />
+      </div>
+
+      <p class="err" id="cmp-err" role="alert"></p>
+      <div class="cmp-act">
+        <button type="button" class="btn primary" id="btn-compare" disabled>
+          <span class="btn-label">开始比对</span><span class="spinner" hidden></span>
+        </button>
+      </div>
+
+      <div class="res-box" id="res-box">
+        <div class="res-head">
+          <span class="verdict" id="res-verdict">-</span>
+          <span class="badge muted" id="res-note" style="display:none"></span>
+        </div>
+        <div class="res-grid">
+          <div class="res-item"><div class="k">相似度 score</div><div class="v" id="res-score">-</div></div>
+          <div class="res-item"><div class="k">判定阈值</div><div class="v" id="res-thr">-</div></div>
+          <div class="res-item"><div class="k">人脸比对耗时(后端)</div><div class="v" id="res-ms">-</div></div>
+          <div class="res-item"><div class="k">页面总耗时(含上传)</div><div class="v" id="res-total">-</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script type="module" src="js/compare.js"></script>
+</body>
+</html>
