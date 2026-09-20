@@ -1,5 +1,0 @@
-{
-  "admin_reg_key": "FaceAuth@2026",
-
-  "cli_auth_extra_args": ["--risk-spoof-thr", "70"]
-}
